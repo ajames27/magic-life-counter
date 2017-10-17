@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 export default StyleSheet.create({
@@ -15,6 +15,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.6,
         shadowRadius: 6,
         borderRadius: 20,
+        elevation: 4,
     },
     score: {
         backgroundColor: "transparent",
@@ -27,9 +28,11 @@ export default StyleSheet.create({
     },
     rightDigit: {
         marginRight: 25,
+        marginTop: Platform.OS === "android" ? 15 : 0,
     },
     leftDigit: {
         marginLeft: 25,
+        marginTop: Platform.OS === "android" ? 15 : 0,
     },
     button: {
         width: 150,
@@ -41,8 +44,6 @@ export default StyleSheet.create({
     buttonLeft: {
         borderBottomLeftRadius: 20,
         borderTopLeftRadius: 20,
-        borderRightWidth: StyleSheet.hairlineWidth * 3,
-        borderRightColor: "#a9a9a9",
     },
     buttonRight: {
         borderBottomRightRadius: 20,
@@ -74,6 +75,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.6,
         shadowRadius: 3,
         borderRadius: 10,
+        elevation: 2,
     },
     topFiveContainer: {
         flexDirection: "row-reverse",
