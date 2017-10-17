@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity, StatusBar } from "react-native";
+import { StyleSheet, View, Text, Dimensions, TouchableHighlight, TouchableOpacity, StatusBar } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import lightTheme from "./lightTheme";
 import darkTheme from "./darkTheme";
@@ -11,7 +11,7 @@ class LifeScreen extends Component {
         this.state = {
             counterOne: this.props.startingLife,
             counterTwo: this.props.startingLife,
-            isDarkTheme: true,
+            isDarkTheme: false,
         };
     }
 
@@ -94,54 +94,79 @@ class LifeScreen extends Component {
         const hello = () => setInterval(this.updateLifeCounter("decrement", 2, 5), 200);
 
         const counterOneLeft = (
-            <TouchableOpacity style={[button, buttonLeft]} onPress={() => this.updateLifeCounter("decrement", 1, 1)}>
+            <TouchableHighlight
+                style={[button, buttonLeft]}
+                underlayColor="#a9a9a9"
+                onPress={() => this.updateLifeCounter("decrement", 1, 1)}
+            >
                 <Text style={[score, leftDigit]}>
                     {this.state.counterOne < 0 || this.state.counterOne > 9 ? counterOne.toString().slice(0, 1) : "0"}
                 </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
 
         const counterOneRight = (
-            <TouchableOpacity style={[button, buttonRight]} onPress={() => this.updateLifeCounter("increment", 1, 1)}>
+            <TouchableHighlight
+                style={[button, buttonRight]}
+                underlayColor="#a9a9a9"
+                onPress={() => this.updateLifeCounter("increment", 1, 1)}
+            >
                 <Text style={[score, rightDigit]}>
                     {this.state.counterOne < 0 || this.state.counterOne > 9
                         ? counterOne.toString().slice(1, 2)
                         : counterOne.toString().slice(0, 1)}
                 </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
 
         const counterTwoLeft = (
-            <TouchableOpacity style={[button, buttonLeft]} onPress={() => this.updateLifeCounter("decrement", 2, 1)}>
+            <TouchableHighlight
+                style={[button, buttonLeft]}
+                underlayColor="#a9a9a9"
+                onPress={() => this.updateLifeCounter("decrement", 2, 1)}
+            >
                 <Text style={[score, leftDigit]}>
                     {this.state.counterTwo < 0 || this.state.counterTwo > 9 ? counterTwo.toString().slice(0, 1) : "0"}
                 </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
 
         const counterTwoRight = (
-            <TouchableOpacity style={[button, buttonRight]} onPress={() => this.updateLifeCounter("increment", 2, 1)}>
+            <TouchableHighlight
+                style={[button, buttonRight]}
+                underlayColor="#a9a9a9"
+                onPress={() => this.updateLifeCounter("increment", 2, 1)}
+            >
                 <Text style={[score, rightDigit]}>
                     {this.state.counterTwo < 0 || this.state.counterTwo > 9
                         ? counterTwo.toString().slice(1, 2)
                         : counterTwo.toString().slice(0, 1)}
                 </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
 
         return (
             <View style={container}>
                 <View style={[topFiveContainer, flip]}>
-                    <TouchableOpacity style={[fiveButton]} onPress={() => this.updateLifeCounter("increment", 1, 5)}>
+                    <TouchableHighlight
+                        style={[fiveButton]}
+                        underlayColor="#a9a9a9"
+                        onPress={() => this.updateLifeCounter("increment", 1, 5)}
+                    >
                         <Text style={fiveText}>+5</Text>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                     <View style={{ flex: 0.5 }} />
-                    <TouchableOpacity style={[fiveButton]} onPress={() => this.updateLifeCounter("decrement", 1, 5)}>
+                    <TouchableHighlight
+                        style={[fiveButton]}
+                        underlayColor="#a9a9a9"
+                        onPress={() => this.updateLifeCounter("decrement", 1, 5)}
+                    >
                         <Text style={fiveText}>-5</Text>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                 </View>
                 <View style={[counterContainer, flip]}>
                     {counterOneLeft}
+                    <View style={{ width: 1, height: screenHeight / 2 - 150, backgroundColor: "#a9a9a9" }} />
                     {counterOneRight}
                 </View>
                 <View style={menuBar}>
@@ -153,7 +178,10 @@ class LifeScreen extends Component {
                             color={this.state.isDarkTheme ? "#ccc" : "#000"}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.setState({ isDarkTheme: !this.state.isDarkTheme })}>
+                    <TouchableOpacity
+                        underlayColor="#a9a9a9"
+                        onPress={() => this.setState({ isDarkTheme: !this.state.isDarkTheme })}
+                    >
                         <MaterialCommunityIcons
                             style={menuItem}
                             name="theme-light-dark"
@@ -164,22 +192,28 @@ class LifeScreen extends Component {
                 </View>
                 <View style={counterContainer}>
                     {counterTwoLeft}
+                    <View style={{ width: 1, height: screenHeight / 2 - 150, backgroundColor: "#a9a9a9" }} />
                     {counterTwoRight}
                 </View>
 
                 <View style={bottomFiveContainer}>
-                    <TouchableOpacity style={[fiveButton]} onPress={() => this.updateLifeCounter("increment", 2, 5)}>
-                        <Text style={fiveText}>+5</Text>
-                    </TouchableOpacity>
-                    <View style={{ flex: 0.5 }} />
-                    <TouchableOpacity
+                    <TouchableHighlight
                         style={[fiveButton]}
+                        underlayColor="#a9a9a9"
+                        onPress={() => this.updateLifeCounter("increment", 2, 5)}
+                    >
+                        <Text style={fiveText}>+5</Text>
+                    </TouchableHighlight>
+                    <View style={{ flex: 0.5 }} />
+                    <TouchableHighlight
+                        style={[fiveButton]}
+                        underlayColor="#a9a9a9"
                         onPress={() => this.updateLifeCounter("decrement", 2, 5)}
                         onLongPress={() => hello()}
                         onPressOut={clearInterval(hello)}
                     >
                         <Text style={fiveText}>-5</Text>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                 </View>
             </View>
         );
