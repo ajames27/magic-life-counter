@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import LifeScreen from "./src/counter/counter";
+import Settings from "./src/drawer/settings";
 
 import { Font } from "expo";
 
