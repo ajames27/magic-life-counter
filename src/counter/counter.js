@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Dimensions, TouchableHighlight, TouchableOpacit
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import lightTheme from "./lightTheme";
 import darkTheme from "./darkTheme";
+import Expo from "expo";
 
 class LifeScreen extends Component {
     constructor(props) {
@@ -13,6 +14,12 @@ class LifeScreen extends Component {
             counterTwo: this.props.startingLife,
             isDarkTheme: false,
         };
+    }
+
+    componentDidMount() {
+        Expo.SecureStore.getItemAsync("darkThemeEnabled").then(
+            response => response && this.setState({ isDarkTheme: JSON.parse(response) })
+        );
     }
 
     updateLifeCounter = (action, playerId, lifeChange) => {
@@ -145,6 +152,45 @@ class LifeScreen extends Component {
             </TouchableHighlight>
         );
 
+        const MenuBar = (
+            <View style={menuBar}>
+                <TouchableOpacity onPress={() => this.updateLifeCounter("reset")}>
+                    <Ionicons
+                        style={menuItem}
+                        name="md-refresh"
+                        size={48}
+                        color={this.state.isDarkTheme ? "#ccc" : "#000"}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    underlayColor="#a9a9a9"
+                    onPress={() => {
+                        this.setState({ isDarkTheme: !this.state.isDarkTheme }, () =>
+                            Expo.SecureStore.setItemAsync("darkThemeEnabled", JSON.stringify(this.state.isDarkTheme))
+                        );
+                    }}
+                >
+                    <MaterialCommunityIcons
+                        style={menuItem}
+                        name="theme-light-dark"
+                        size={48}
+                        color={this.state.isDarkTheme ? "#ccc" : "#000"}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    underlayColor="#a9a9a9"
+                    onPress={() => this.setState({ isDarkTheme: !this.state.isDarkTheme })}
+                >
+                    <MaterialCommunityIcons
+                        style={menuItem}
+                        name="settings"
+                        size={48}
+                        color={this.state.isDarkTheme ? "#ccc" : "#000"}
+                    />
+                </TouchableOpacity>
+            </View>
+        );
+
         return (
             <View style={container}>
                 <View style={[topFiveContainer, flip]}>
@@ -169,27 +215,7 @@ class LifeScreen extends Component {
                     <View style={{ width: 1, height: screenHeight / 2 - 150, backgroundColor: "#a9a9a9" }} />
                     {counterOneRight}
                 </View>
-                <View style={menuBar}>
-                    <TouchableOpacity onPress={() => this.updateLifeCounter("reset")}>
-                        <Ionicons
-                            style={menuItem}
-                            name="md-refresh"
-                            size={48}
-                            color={this.state.isDarkTheme ? "#ccc" : "#000"}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        underlayColor="#a9a9a9"
-                        onPress={() => this.setState({ isDarkTheme: !this.state.isDarkTheme })}
-                    >
-                        <MaterialCommunityIcons
-                            style={menuItem}
-                            name="theme-light-dark"
-                            size={48}
-                            color={this.state.isDarkTheme ? "#ccc" : "#000"}
-                        />
-                    </TouchableOpacity>
-                </View>
+                {MenuBar}
                 <View style={counterContainer}>
                     {counterTwoLeft}
                     <View style={{ width: 1, height: screenHeight / 2 - 150, backgroundColor: "#a9a9a9" }} />
