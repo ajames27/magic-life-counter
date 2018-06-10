@@ -6,15 +6,17 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "expo": "^21.0.0",
-    "firebase": "^4.9.0",
-    "native-base": "^2.3.3",
-    "react": "16.0.0-alpha.12",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz"
+    "expo": "^27.0.0",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react-native-elements": "1.0.0-beta5",
+    "react-navigation": "1.5.11"
   },
   "devDependencies": {
-    "eslint": "^4.14.0",
-    "eslint-config-universe": "^1.0.6",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-native": "^3.2.1",
     "prettier": "^1.9.2"
   }
 }

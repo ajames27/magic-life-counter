@@ -7,6 +7,7 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     backgroundColor: "#dddddd",
+    padding: "2%",
   },
   counterContainer: {
     flexDirection: "row",
@@ -58,6 +59,10 @@ export default StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     margin: "auto",
+    shadowColor: "rgba(100, 100, 100, 0.9)",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
   },
   menuItem: {
     marginLeft: 10,
@@ -77,19 +82,11 @@ export default StyleSheet.create({
     borderRadius: 10,
     elevation: 2,
   },
-  topFiveContainer: {
+  fiveContainer: {
     flexDirection: "row-reverse",
     justifyContent: "space-around",
     marginLeft: "15%",
     marginRight: "15%",
-    marginTop: "5%",
-  },
-  bottomFiveContainer: {
-    flexDirection: "row-reverse",
-    justifyContent: "space-around",
-    marginLeft: "15%",
-    marginRight: "15%",
-    marginBottom: "5%",
   },
   fiveText: {
     fontFamily: "Helvetica",

@@ -5,7 +5,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import darkTheme from "../styles/darkTheme";
 import lightTheme from "../styles/lightTheme";
 
-export const MenuBar = ({ lifeHandler, isDarkTheme, toggleTheme }) => {
+export const MenuBar = ({ lifeHandler, isDarkTheme, toggleTheme, toggleColorOverlay }) => {
   const { menuItem, menuBarContainer } = isDarkTheme ? darkTheme : lightTheme;
   const color = isDarkTheme ? "#ccc" : "#000";
   return (
@@ -27,4 +27,5 @@ MenuBar.propTypes = {
   lifeHandler: PropTypes.func,
   isDarkTheme: PropTypes.bool,
   toggleTheme: PropTypes.func,
+  toggleColorOverlay: PropTypes.func,
 };
