@@ -14,7 +14,14 @@ import { FiveIncrement, FiveDecrement } from "./components/fiveButtons";
 
 export default class LinkedMultiplayerContainer extends Component {
   render() {
-    const { lifeHandler, toggleTheme, lifeTotals, isDarkTheme, toggleColorOverlay } = this.props;
+    const {
+      lifeHandler,
+      toggleTheme,
+      lifeTotals,
+      isDarkTheme,
+      toggleColorOverlay,
+      roomId,
+    } = this.props;
     const { container, flip, counterContainer, fiveContainer } = isDarkTheme
       ? darkTheme
       : lightTheme;
@@ -52,6 +59,7 @@ export default class LinkedMultiplayerContainer extends Component {
           }}
         >
           <View style={[counterContainer]}>
+          <Text>{roomId}</Text>
             <DecrementButton {...playerTwoProps} {...playerSharedProps} />
             <ButtonDivider size="small" />
             <IncrementButton {...playerTwoProps} {...playerSharedProps} />
@@ -96,4 +104,5 @@ LinkedMultiplayerContainer.propTypes = {
   lifeTotals: PropTypes.array,
   colorOverlayVisible: PropTypes.bool,
   toggleColorOverlay: PropTypes.func,
+  roomId: PropTypes.string,
 };

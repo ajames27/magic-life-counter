@@ -6,6 +6,26 @@ import PropTypes from "prop-types";
 import { Overlay } from "react-native-elements";
 
 class Home extends Component {
+  state = {
+    roomId: "",
+  };
+
+  onChangeRoomId = roomId => {
+    this.setState({
+      roomId,
+    });
+  };
+
+  loadRoom = () => {
+    const { roomId } = this.state;
+    const { navigation } = this.props;
+
+    if (/[a-zA-Z0-9]{4}/.test(roomId)) {
+      navigation.push("LifeScreen", {
+        roomId,
+      });
+    }
+  };
   // componentDidMount() {
   //   Expo.SecureStore.getItemAsync("username").then(console.warn);
   //   Expo.SecureStore.getItemAsync("color").then(console.warn);
@@ -22,10 +42,10 @@ class Home extends Component {
             textAlign={"center"}
             autoCapitalize="none"
             autoCorrect={false}
-            value={""}
-            onChangeText={username => this.setState({ username })}
+            value={this.state.roomId}
+            onChangeText={this.onChangeRoomId}
           />
-          <TouchableOpacity style={styles.submitBtn} onPress={this.validateUsername}>
+          <TouchableOpacity style={styles.submitBtn} onPress={this.loadRoom}>
             <Text style={styles.btnText}>Continue</Text>
             <SimpleLineIcons
               name="arrow-right-circle"
@@ -39,10 +59,20 @@ class Home extends Component {
           <Text style={styles.heading}>________________</Text>
         </View>
         <View style={styles.gameOptions}>
-          <TouchableOpacity style={styles.createBtn}>
+          <TouchableOpacity
+            style={styles.createBtn}
+            onPress={() => navigation.push("LifeScreen")}
+          >
             <Text style={styles.createBtnText}>Create new room</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push("LifeScreen")} style={styles.createBtn}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.push("LifeScreen", {
+                offline: true,
+              })
+            }
+            style={styles.createBtn}
+          >
             <Text style={styles.createBtnText}>Play offline</Text>
           </TouchableOpacity>
         </View>

@@ -5,6 +5,8 @@ import { Font } from "expo";
 // import Settings from "./src/settings/settings";
 import RootStack from "./src/routing/router";
 
+import { db, DbProvider } from "./src/fb";
+
 export default class App extends Component {
   state = {
     fontLoaded: false,
@@ -21,10 +23,12 @@ export default class App extends Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar hidden />
-        {this.state.fontLoaded ? <RootStack /> : null}
-      </View>
+      <DbProvider value={db}>
+        <View style={{ flex: 1 }}>
+          <StatusBar hidden />
+          {this.state.fontLoaded ? <RootStack /> : null}
+        </View>
+      </DbProvider>
     );
   }
 }

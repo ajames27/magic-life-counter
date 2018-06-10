@@ -29,9 +29,10 @@ export const IncrementButton = ({ playerId, lifeTotal, lifeHandler, isDarkTheme,
       onPressOut={() => clearInterval(interval)}
     >
       <Text style={size !== "small" ? [score, rightDigit] : [smallScore, smallRightDigit]}>
-        {lifeTotal < 0 || lifeTotal > 9
-          ? lifeTotal.toString().slice(1, 2)
-          : lifeTotal.toString().slice(0, 1)}
+        {lifeTotal &&
+          (lifeTotal < 0 || lifeTotal > 9
+            ? lifeTotal.toString().slice(1, 2)
+            : lifeTotal.toString().slice(0, 1))}
       </Text>
     </TouchableHighlight>
   );
